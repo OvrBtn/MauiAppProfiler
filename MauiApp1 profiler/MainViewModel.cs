@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MauiApp1_profiler
 {
-    internal class MainViewModel : BaseViewModel
+    public partial class MainViewModel : BaseViewModel
     {
         public MainViewModel()
         {
@@ -38,8 +38,9 @@ namespace MauiApp1_profiler
             System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
             stopwatch.Start();
             var result = JsonConvert.DeserializeObject<User>("{\"id\": \"123\", \"first_name\": \"A\", \"last_name\": \"B\", \"student_number\": \"1\"}");
-            TestLabel = "ID: " + result.id;
             stopwatch.Stop();
+            TestLabel = "ID: " + result.id;
+
             TimerLabel = "Timer elapsed miliseconds ViewModel: " + stopwatch.Elapsed.Milliseconds.ToString();
         }
 

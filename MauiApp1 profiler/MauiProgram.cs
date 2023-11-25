@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Studencki_USOS_PUT_MAUI.ViewModels;
 
 namespace MauiApp1_profiler
 {
@@ -15,8 +16,13 @@ namespace MauiApp1_profiler
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            builder.Services.AddSingleton<BaseViewModel>();
+            builder.Services.AddSingleton<MainViewModel>();
+
+            builder.Services.AddSingleton<MainPage>();
+
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
