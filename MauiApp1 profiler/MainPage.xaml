@@ -15,6 +15,8 @@
             VerticalOptions="Center">
 
             <Label Text="{Binding TestLabel}" TextColor="Red"></Label>
+            <Label Text="{Binding TimerLabel}" TextColor="Red"></Label>
+            <Label x:Name="timerLabel" Text="" TextColor="Red"></Label>
             
             <Image
                 Source="dotnet_bot.png"

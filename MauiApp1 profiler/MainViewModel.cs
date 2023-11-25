@@ -12,12 +12,18 @@ namespace MauiApp1_profiler
     {
         public MainViewModel()
         {
-            SettingsText();
+
+        }
+
+        public async Task Init()
+        {
+            SetText();
+            OnFinished?.Invoke();
         }
 
         class User
         {
-            public string Id;
+            public string id;
             public string last_name;
             public string first_name;
             public string student_number;
@@ -25,15 +31,16 @@ namespace MauiApp1_profiler
             public User() { }
         }
 
+        public Action OnFinished;
 
-        void SettingsText()
+        void SetText()
         {
             System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
             stopwatch.Start();
             var result = JsonConvert.DeserializeObject<User>("{\"id\": \"123\", \"first_name\": \"A\", \"last_name\": \"B\", \"student_number\": \"1\"}");
-            TestLabel = result.Id;
+            TestLabel = "ID: " + result.id;
             stopwatch.Stop();
-            var t = stopwatch.Elapsed.Milliseconds;
+            TimerLabel = "Timer elapsed miliseconds ViewModel: " + stopwatch.Elapsed.Milliseconds.ToString();
         }
 
         public string TestLabel
@@ -42,10 +49,22 @@ namespace MauiApp1_profiler
             set
             {
                 testLabel = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(TestLabel));
             }
         }
         string testLabel;
+
+
+        public string TimerLabel
+        {
+            get => timerLabel;
+            set
+            {
+                timerLabel = value;
+                OnPropertyChanged(nameof(TimerLabel));
+            }
+        }
+        string timerLabel;
 
     }
 }
